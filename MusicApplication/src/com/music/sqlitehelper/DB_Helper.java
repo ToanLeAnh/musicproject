@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.music.model.MediaDirectory;
 import com.music.model.MediaFile;
 
 public class DB_Helper extends SQLiteOpenHelper {
@@ -40,6 +41,10 @@ public class DB_Helper extends SQLiteOpenHelper {
 		
 		String sql_mediafile = "drop table if exists " + MediaFile.Table;
 		db.execSQL(sql_mediafile);
+		
+		String sql_media_directory = "drop table if exists " + MediaDirectory.Table;
+		db.execSQL(sql_media_directory);
+		
 		
 		Log.d(TAG, "End On Upgrate ");
 		onCreate(db);
