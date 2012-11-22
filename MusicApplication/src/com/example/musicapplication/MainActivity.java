@@ -1,27 +1,65 @@
 package com.example.musicapplication;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
-
 import android.os.Bundle;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 
-public class MainActivity extends SherlockActivity {
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.component.tab.AlbumsFragment;
+import com.component.tab.ArtistFragment;
+import com.component.tab.PlayListFragment;
+import com.component.tab.SongsFragment;
+
+public class MainActivity extends SherlockFragmentActivity{
 
 	com.actionbarsherlock.app.ActionBar actionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		actionBar = getSupportActionBar();
+		
+		ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+ 
+        actionBar.setDisplayShowTitleEnabled(true);
+ 
+        Tab tab = actionBar.newTab()
+                    .setText("Songs")
+                    .setTabListener(new SongsFragment());
+                    //.setIcon(R.drawable.songs);
+        
+        actionBar.addTab(tab);
+        
+        Tab tab_Album = actionBar.newTab()
+                .setText("Albums")
+                .setTabListener(new AlbumsFragment());
+                //.setIcon(R.drawable.songs);
+
+        actionBar.addTab(tab_Album);
+        
+        Tab tab_Artist = actionBar.newTab()
+                .setText("Artist")
+                .setTabListener(new ArtistFragment());
+                //.setIcon(R.drawable.songs);
+
+        actionBar.addTab(tab_Artist);
+
+        Tab tab_Playlist = actionBar.newTab()
+                .setText("Playlist")
+                .setTabListener(new PlayListFragment());
+                //.setIcon(R.drawable.songs);
+
+        actionBar.addTab(tab_Playlist);
+
+		//setContentView(R.layout.activity_main);
+		//actionBar = getSupportActionBar();
 		
 					
 	}
 	
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
 		// TODO Auto-generated method stub
@@ -54,6 +92,6 @@ public class MainActivity extends SherlockActivity {
 		
 	}
 
-	 
+	 */
 
 }
