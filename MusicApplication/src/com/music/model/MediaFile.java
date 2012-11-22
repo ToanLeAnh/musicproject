@@ -4,7 +4,7 @@ import android.provider.MediaStore;
 
 public class MediaFile {
 	
-	public final static String Cols_ID = "ID";
+	public final static String Cols_ID = "ID_FILE";
 	public final static String	Cols_PATH =	"PATH";
 	public final static String Cols_DURATION = "DURATION";
 	public final static String Cols_TYPE = "TYPE";
