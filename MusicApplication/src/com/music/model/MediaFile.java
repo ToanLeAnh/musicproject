@@ -4,19 +4,17 @@ import android.provider.MediaStore;
 
 public class MediaFile {
 	
-	public final static String Cols_ID = "ID_FILE";
-	public final static String	Cols_PATH =	"PATH";
-	public final static String Cols_DURATION = "DURATION";
-	public final static String Cols_TYPE = "TYPE";
-	public final static String Cols_PICTURE = "PICTURE";
-	public final static String Cols_TITLE = "TITLE";
-	public final static String Cols_SIZE =	"SIZE";
-	public final static String Cols_ARTIST = "ARTIST";
-    public final static String Cols_GENER = "GENER";
-    public final static String Cols_ALBUM = "ALBUM";
+	public final static String Col_PATH =	"PATH";
+	public final static String Col_DURATION = "DURATION";
+	public final static String Col_TYPE = "TYPE";
+	public final static String Col_PICTURE = "PICTURE";
+	public final static String Col_TITLE = "TITLE";
+	public final static String Col_SIZE =	"SIZE";
+	public final static String Col_ARTIST = "ARTIST";
+    public final static String Col_GENER = "GENER";
+    public final static String Col_ALBUM = "ALBUM";
 							
 	
-	private String id;
 	private String path;
 	private String duration;
 	private String type;
@@ -25,14 +23,6 @@ public class MediaFile {
 	private String size;
 	private String artist;
 	private String album;
-	
-	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	
 	
 	public String getPath() {
