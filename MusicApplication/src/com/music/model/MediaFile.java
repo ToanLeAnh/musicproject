@@ -4,6 +4,8 @@ import android.provider.MediaStore;
 
 public class MediaFile {
 	
+	public final static String Table = "tbl_media";
+	
 	public final static String Col_PATH =	"PATH";
 	public final static String Col_DURATION = "DURATION";
 	public final static String Col_TYPE = "TYPE";
@@ -14,7 +16,6 @@ public class MediaFile {
     public final static String Col_GENER = "GENER";
     public final static String Col_ALBUM = "ALBUM";
 							
-	
 	private String path;
 	private String duration;
 	private String type;
