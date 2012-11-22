@@ -14,7 +14,7 @@ public class AlbumsFragment extends SherlockListFragment implements ActionBar.Ta
 	String songs[] = new String[]{
 	        "Nhip Cau Tri Am",
 	        "Xuan Chien Truong",
-	        "De Lai Cho Doi",
+	        "De Lai Cho Doi", 
 	      };
 	
 	
