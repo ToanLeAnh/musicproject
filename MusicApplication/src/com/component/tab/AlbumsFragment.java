@@ -17,6 +17,7 @@ public class AlbumsFragment extends SherlockListFragment implements ActionBar.Ta
 	        "De Lai Cho Doi",
 	      };
 	
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
