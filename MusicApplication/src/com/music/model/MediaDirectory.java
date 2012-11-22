@@ -2,11 +2,11 @@ package com.music.model;
 
 public class MediaDirectory {
 	
+	public final static String Table = "tbl_directories";
+	
 	public final static String Col_DIRECTORY = "DIRECTORY";
 	
 	private String path;
-	
-	
 	
 	public String getPath() {
 		return path;
@@ -14,6 +14,8 @@ public class MediaDirectory {
 	public void setPath(String path) {
 		this.path = path;
 	}
+	
+	
 	
 	
 	
