@@ -38,19 +38,7 @@ public class DirectoriesActivity extends Activity  {
 		ArrayAdapter<MediaDirectory> arrayDirAdapter = new directory_format_view(this,R.layout.directory_multi_choice,lstDir,R.id.lst_view_directories); 
 		
 		
-		lstView.setAdapter(arrayDirAdapter);
-		
-		
-		lstView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				Log.i("SaoToikhong", "Chuyen gi vay trooi");
-			}
-		});
-		
+		lstView.setAdapter(arrayDirAdapter);		
 		
 		
 		/*
