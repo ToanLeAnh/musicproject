@@ -40,6 +40,19 @@ public class DirectoriesActivity extends Activity  {
 		
 		lstView.setAdapter(arrayDirAdapter);
 		
+		
+		lstView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Log.i("SaoToikhong", "Chuyen gi vay trooi");
+			}
+		});
+		
+		
+		
 		/*
 		lstView.setOnItemClickListener(new OnItemClickListener() {
 
