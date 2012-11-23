@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.Contacts.Intents.Insert;
+import android.util.Log;
 
 public class Datasource_directories {
 	
@@ -65,6 +66,7 @@ public class Datasource_directories {
 			dir.setName(cursor.getString(position_name));
 			dir.setPath(cursor.getString(position_path));
 			lstDir.add(dir);
+			cursor.moveToNext();
 		}
 		
 		close();
@@ -82,10 +84,11 @@ public class Datasource_directories {
 				content.put(MediaDirectory.Col_DiRECTORY_PATH,directory.getPath());
 				db.insert(MediaDirectory.Table, null, content);
 				close();
+				Log.d(TAG,"Create successfully");
 				return true;
 			}
 			catch(Exception ex){
-				
+				Log.d(TAG, ex.toString());
 			}
 		}
 		return false;
@@ -95,9 +98,11 @@ public class Datasource_directories {
 		String pathKey = "";
 		String sql = MediaDirectory.Col_DiRECTORY_PATH + " = " ;
 		if (directory != null){
+			open();
 			pathKey = directory.getPath();
 			sql = sql + pathKey;
 			db.delete(MediaDirectory.Table, sql,null);
+			close();
 		}
 	}
 	
