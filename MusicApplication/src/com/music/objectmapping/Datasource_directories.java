@@ -21,9 +21,7 @@ public class Datasource_directories {
 	
 	String TAG = "Datasource_directories";
 	String[] allCols = {MediaDirectory.Col_DIRECTORY_NAME,MediaDirectory.Col_DiRECTORY_PATH};
-	
-	private MediaDirectory directory = new MediaDirectory() ; 
-	
+		
 	public static String commandCreateDirectoryTable(){
 		String sql = "";
 		sql = "Create Table " + MediaDirectory.Table + " ( ";
@@ -38,14 +36,6 @@ public class Datasource_directories {
 		return sql;
 	}
 	
-	public MediaDirectory getDirectory() {
-		return directory;
-	}
-
-	public void setDirectory(MediaDirectory directory) {
-		this.directory = directory;
-	}
-
 	public Datasource_directories(Context context){
 		dbhelper = new DB_Helper(context);
 	}
@@ -82,7 +72,7 @@ public class Datasource_directories {
 		return lstDir;
 	}
 	
-	public boolean save(){
+	public boolean save(MediaDirectory directory){
 		ContentValues content = new ContentValues();
 		
 		if (directory != null){
@@ -101,7 +91,7 @@ public class Datasource_directories {
 		return false;
 	}
 	
-	public void delete(){
+	public void delete(MediaDirectory directory){
 		String pathKey = "";
 		String sql = MediaDirectory.Col_DiRECTORY_PATH + " = " ;
 		if (directory != null){
