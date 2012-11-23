@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.musicapplication.R.id;
 import com.example.musicapplication.R.layout;
 import com.music.model.MediaDirectory;
+import com.music.objectmapping.Datasource_directories;
 
 import android.R;
 import android.content.Context;
@@ -27,11 +28,12 @@ public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 	
 	private Context context;
 	private List<MediaDirectory> lstDirectory;
+	private List<MediaDirectory> ds_lstDir; 
 	
 	private int typeLayoutFormat = com.example.musicapplication.R.layout.directory_multi_choice;
 	private int txtControlId = com.example.musicapplication.R.id.txt_name_directory;
 	private int ckControlId = com.example.musicapplication.R.id.ckb_name_directory;
-	
+	private Datasource_directories transfer;
 	
 	private class OnItemClickListener implements OnClickListener{
 		
@@ -51,7 +53,7 @@ public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 		}
 	};
 	
-	
+	//This class support in case of user click Checkbox
 	private class OnItemCheckedChangeListener implements OnCheckedChangeListener{
 		
 		private int position;
@@ -64,10 +66,32 @@ public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
 			// TODO Auto-generated method stub
-			Log.d(TAG,String.valueOf(this.position));
-			Log.d(TAG,String.valueOf(isChecked));
+			MediaDirectory dir = new MediaDirectory();
+			dir = lstDirectory.get(this.position);
+			
+			if (isChecked == true){
+				transfer.save(dir);
+			}
+			else{
+				transfer.delete(dir);
+			}
+			
+			//Log.d(TAG,String.valueOf(this.position));
+			//Log.d(TAG,String.valueOf(isChecked));
 		}
 	};
+	
+	private void updateCheck(){
+		int i=0,j=0;
+		
+		for(i=0;i < ds_lstDir.size();i++){
+			for (j=0;j< lstDirectory.size();j++){
+				if(ds_lstDir.get(i).getPath().equals(lstDirectory.get(j).getPath())){
+					lstDirectory.get(j).setIsChecked("Y");
+				}
+			}
+		}
+	}
 	
 	public directory_format_view(Context context, int textViewResourceId,List<MediaDirectory> objects,int controlId) {
 		super(context, com.example.musicapplication.R.layout.directory_multi_choice, objects);
@@ -75,6 +99,9 @@ public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.lstDirectory = objects;
+		this.transfer = new Datasource_directories(context);
+		ds_lstDir = transfer.getListAllDirectories();
+		updateCheck();
 		//this.typeLayoutFormat = textViewResourceId;
 		//this.typeControlId = controlId;
 		
