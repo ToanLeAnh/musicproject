@@ -75,7 +75,7 @@ public class DirectoriesActivity extends Activity  {
 						MediaDirectory dir = new MediaDirectory();
 						dir.setName(folder.getName().toString());
 						dir.setPath(folder.getPath().toString());
-						dir.setIsChecked("Y");
+						dir.setIsChecked("N");
 						
 						lstDirectory.add(dir);
 					}
