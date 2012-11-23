@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.music.model.MediaDirectory;
 import com.music.model.MediaFile;
+import com.music.objectmapping.Datasource_directories;
 
 public class DB_Helper extends SQLiteOpenHelper {
 	
@@ -30,8 +31,10 @@ public class DB_Helper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		Log.d(TAG,"Start on Create Table");
+		String sql = Datasource_directories.commandCreateDirectoryTable();
+		db.execSQL(sql);
 		Log.d(TAG, "End on Create Table");
-	}
+	} 
 
 	//Called whenever oldVersion != newVersion.
 	@Override
@@ -39,11 +42,9 @@ public class DB_Helper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		Log.d(TAG,"Start On Upgrate");
 		
-		String sql_mediafile = "drop table if exists " + MediaFile.Table;
+		String sql_mediafile = Datasource_directories.commandRemoveDrectoryTable();
 		db.execSQL(sql_mediafile);
 		
-		String sql_media_directory = "drop table if exists " + MediaDirectory.Table;
-		db.execSQL(sql_media_directory);
 		
 		
 		Log.d(TAG, "End On Upgrate ");
