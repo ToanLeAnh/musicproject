@@ -26,7 +26,7 @@ public class Datasource_directories {
 		String sql = "";
 		sql = "Create Table " + MediaDirectory.Table + " ( ";
 		sql = sql + MediaDirectory.Col_DiRECTORY_PATH + " text PRIMARY KEY  ,";
-		sql = sql + MediaDirectory.Col_DiRECTORY_PATH + " text )";
+		sql = sql + MediaDirectory.Col_DIRECTORY_NAME + " text )";
 		return sql; 
 	}
 	
