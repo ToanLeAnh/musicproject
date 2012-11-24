@@ -30,4 +30,29 @@ public class MediaDirectory {
 		this.path = path;
 	}
 	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		String s="";
+		s = this.name + this.path;
+		return s.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		if (o == null){
+			return false;
+		}
+			
+		if (getClass() != o.getClass()){
+			return false;
+		}
+		
+		if (this.hashCode() == o.hashCode()){
+			return true;
+		}
+				
+		return false;
+	}
 }
