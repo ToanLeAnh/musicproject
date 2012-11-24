@@ -5,6 +5,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
 import android.provider.MediaStore.Files;
 import android.util.Log;
@@ -34,26 +35,30 @@ public class Datasource_mediafile {
     
     public List<MediaFile> getAllMediaFromSpecifiedFolders(){
     	List<MediaFile> lst_media = new ArrayList<MediaFile>();
+    	MediaMetadataRetriever getMeta = new MediaMetadataRetriever(); 
     	String hd = "/sdcard/Download";
     	
     	File f = new File(hd);
-    	Log.d(TAG,"Kiem tra folder");
+    	/*
     	File[] ttt  = f.listFiles();
     	for (File temp : ttt){
     		Log.d(TAG,temp.getName());
     	}
-    	
-    	MediaMetadataRetriever getMeta = new MediaMetadataRetriever(); 
-    	
+    	*/
     	File[] file = f.listFiles(new AudioFileFilter());
     	
-    	Log.i(TAG,f.getName());
-    	
     	for (File fff : file){
-    		Log.i(TAG,fff.getName());
+    		MediaFile musicFile = new MediaFile();
+    				
     		getMeta.setDataSource(fff.getPath());
-    		String albumName = getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);
-    		Log.i(TAG,albumName);
+    		musicFile.setAlbum(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
+    		musicFile.setArtist(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+    		musicFile.setDuration(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+    		musicFile.setSize(String.valueOf(fff.length()));
+    		musicFile.setTitle(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
+    		musicFile.setComposer(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_COMPOSER));
+    		musicFile.setGenre(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
+    		lst_media.add(musicFile);
     	}
     		
     	return lst_media;
