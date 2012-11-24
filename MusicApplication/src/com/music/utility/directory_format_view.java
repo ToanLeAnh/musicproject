@@ -83,10 +83,18 @@ public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 	
 	private void updateCheck(){
 		int i=0,j=0;
-		
+		/*
 		for(i=0;i < ds_lstDir.size();i++){
 			for (j=0;j< lstDirectory.size();j++){
 				if(ds_lstDir.get(i).getPath().equals(lstDirectory.get(j).getPath())){
+					lstDirectory.get(j).setIsChecked("Y");
+				}
+			}
+		}*/
+		
+		for(i=0;i< ds_lstDir.size();i++){
+			for (j=0;j<lstDirectory.size();j++){
+				if (lstDirectory.get(j).equals(ds_lstDir.get(i))){
 					lstDirectory.get(j).setIsChecked("Y");
 				}
 			}
