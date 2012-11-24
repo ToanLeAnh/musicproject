@@ -12,7 +12,24 @@ public class MediaFile {
 	private String size;
 	private String artist;
 	private String album;
+	private String composer;
+	private String genre;
 	
+	
+	
+	
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getComposer() {
+		return composer;
+	}
+	public void setComposer(String composer) {
+		this.composer = composer;
+	}
 	public String getPath() {
 		return path;
 	}
