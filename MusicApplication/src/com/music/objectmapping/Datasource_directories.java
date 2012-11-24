@@ -17,23 +17,27 @@ import android.util.Log;
 
 public class Datasource_directories {
 	
+	public final static String Table = "tbl_directories";
+	public final static String Col_DIRECTORY_NAME = "DIRECTORY_NAME";
+	public final static String Col_DiRECTORY_PATH = "DIRECTORY_PATH";
+	
 	SQLiteDatabase db;
 	DB_Helper dbhelper;
 	
 	String TAG = "Datasource_directories";
-	String[] allCols = {MediaDirectory.Col_DIRECTORY_NAME,MediaDirectory.Col_DiRECTORY_PATH};
+	String[] allCols = {Col_DIRECTORY_NAME,Col_DiRECTORY_PATH};
 		
 	public static String commandCreateDirectoryTable(){
 		String sql = "";
-		sql = "Create Table " + MediaDirectory.Table + " ( ";
-		sql = sql + MediaDirectory.Col_DiRECTORY_PATH + " text PRIMARY KEY  ,";
-		sql = sql + MediaDirectory.Col_DIRECTORY_NAME + " text )";
+		sql = "Create Table " + Table + " ( ";
+		sql = sql + Col_DiRECTORY_PATH + " text PRIMARY KEY  ,";
+		sql = sql + Col_DIRECTORY_NAME + " text )";
 		return sql; 
 	}
 	
 	public static String commandRemoveDrectoryTable(){
 		String sql = "";
-		sql = "drop table if exists " + MediaDirectory.Table;
+		sql = "drop table if exists " + Table;
 		return sql;
 	}
 	
@@ -56,9 +60,9 @@ public class Datasource_directories {
 
 		open();
 		
-		Cursor cursor =  db.query(MediaDirectory.Table, allCols, null, null, null, null, null);
-		position_name = cursor.getColumnIndex(MediaDirectory.Col_DIRECTORY_NAME);
-		position_path = cursor.getColumnIndex(MediaDirectory.Col_DiRECTORY_PATH);
+		Cursor cursor =  db.query(Table, allCols, null, null, null, null, null);
+		position_name = cursor.getColumnIndex(Col_DIRECTORY_NAME);
+		position_path = cursor.getColumnIndex(Col_DiRECTORY_PATH);
 				
 		cursor.moveToFirst();
 		while(cursor.isAfterLast() == false){
@@ -80,9 +84,9 @@ public class Datasource_directories {
 		if (directory != null){
 			try{
 				open();
-				content.put(MediaDirectory.Col_DIRECTORY_NAME,directory.getName());
-				content.put(MediaDirectory.Col_DiRECTORY_PATH,directory.getPath());
-				db.insert(MediaDirectory.Table, null, content);
+				content.put(Col_DIRECTORY_NAME,directory.getName());
+				content.put(Col_DiRECTORY_PATH,directory.getPath());
+				db.insert(Table, null, content);
 				close();
 				Log.d(TAG,"Create successfully");
 				return true;
@@ -96,12 +100,12 @@ public class Datasource_directories {
 	
 	public void delete(MediaDirectory directory){
 		String pathKey = "";
-		String sql = MediaDirectory.Col_DiRECTORY_PATH + " = " ;
+		String sql = Col_DiRECTORY_PATH + " = " ;
 		if (directory != null){
 			open();
 			pathKey = directory.getPath();
 			sql = sql + pathKey;
-			db.delete(MediaDirectory.Table, sql,null);
+			db.delete(Table, sql,null);
 			close();
 		}
 	}
