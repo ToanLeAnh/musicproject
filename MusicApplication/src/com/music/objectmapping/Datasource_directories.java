@@ -100,12 +100,16 @@ public class Datasource_directories {
 	
 	public void delete(MediaDirectory directory){
 		String pathKey = "";
-		String sql = Col_DiRECTORY_PATH + " = " ;
+		String sql = ""; 
+		sql = "delete from " + Table + " where " + Col_DiRECTORY_PATH +  " = ";
 		if (directory != null){
 			open();
 			pathKey = directory.getPath();
-			sql = sql + pathKey;
-			db.delete(Table, sql,null);
+			sql = sql + "'" + pathKey + "'";
+			
+			Log.d(TAG,sql);
+			
+			db.execSQL(sql);
 			close();
 		}
 	}
