@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class directory_format_view extends ArrayAdapter<MediaDirectory> {
 	
-	private final String TAG = "directory_format_view";
+	protected final String TAG = "directory_format_view";
 	
 	private Context context;
 	private List<MediaDirectory> lstDirectory;
