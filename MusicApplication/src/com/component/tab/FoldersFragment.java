@@ -1,13 +1,18 @@
 package com.component.tab;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.music.model.MediaFile;
+import com.music.objectmapping.Datasource_mediafile;
 
 public class FoldersFragment extends SherlockListFragment implements ActionBar.TabListener {
 	
@@ -17,6 +22,9 @@ public class FoldersFragment extends SherlockListFragment implements ActionBar.T
 	        "De Lai Cho Doi", 
 	};
 	
+	private Datasource_mediafile transfer_file;
+	protected String TAG = "FoldersFragment";
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		 /** Creating array adapter to set data in listview */
@@ -24,7 +32,12 @@ public class FoldersFragment extends SherlockListFragment implements ActionBar.T
  
         /** Setting the array adapter to the listview */
         setListAdapter(adapter);
- 
+        
+        transfer_file = new Datasource_mediafile();
+        List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
+        
+        Log.i(TAG,"Toi khong biet chuyen");
+        
 		super.onViewCreated(view, savedInstanceState);
 	}
 
