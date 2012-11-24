@@ -10,6 +10,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.component.tab.AlbumsFragment;
 import com.component.tab.ArtistFragment;
+import com.component.tab.FoldersFragment;
 import com.component.tab.PlayListFragment;
 import com.component.tab.SongsFragment;
 
@@ -53,6 +54,14 @@ public class MainActivity extends SherlockFragmentActivity{
 
         actionBar.addTab(tab_Playlist);
 
+        Tab tab_Folder = actionBar.newTab()
+                .setText("Folders")
+                .setTabListener(new FoldersFragment());
+                //.setIcon(R.drawable.songs);
+
+        actionBar.addTab(tab_Folder);
+
+        
 		//setContentView(R.layout.activity_main);
 		//actionBar = getSupportActionBar();
 		
