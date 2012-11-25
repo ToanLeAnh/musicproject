@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+    <LinearLayout
+        android:id ="@+id/img_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft ="true"
+        android:layout_marginRight="5dip"
+        android:padding="3dip" > 
+        <ImageView
+            android:id="@+id/img_music_view" 
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/luu_diec_phi"/>
+    </LinearLayout>
+<!-- Title of Songs -->
+<TextView
+    android:id="@+id/txt_title_music_view"
+    android:text="Phoi Pha"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:layout_alignTop="@+id/img_thumbnail"
+    android:layout_toRightOf="@+id/img_thumbnail"
+    android:textSize="15dip"
+    android:textStyle="bold"
+    />
+<!-- Artist of Songs -->
+<TextView 
+    android:id="@+id/txt_artist_music_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/txt_title_music_view"
+    android:layout_toRightOf="@+id/img_thumbnail"
+    android:text="Le Huu Nghia"
+    android:textSize="10dip"
+    android:layout_marginTop="1dip"
+    />
+<!-- Duration of Songs -->
+<TextView 
+    android:id="@+id/txt_duration_music_view"
+    android:text="10:20"
+    android:layout_alignTop="@+id/txt_title_music_view"
+    android:layout_alignParentRight="true"
+    android:gravity="right"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="10dip"
+    android:layout_marginRight="5dip" 
+    />
+
+</RelativeLayout>
