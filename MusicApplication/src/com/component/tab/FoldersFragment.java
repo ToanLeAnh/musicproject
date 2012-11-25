@@ -13,6 +13,7 @@ import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.music.model.MediaFile;
 import com.music.objectmapping.Datasource_mediafile;
+import com.music.utility.music_format_view;
 
 public class FoldersFragment extends SherlockListFragment implements ActionBar.TabListener {
 	
@@ -28,15 +29,14 @@ public class FoldersFragment extends SherlockListFragment implements ActionBar.T
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		 /** Creating array adapter to set data in listview */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, folders);
- 
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, folders);
+		transfer_file = new Datasource_mediafile();
+		List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
+        
+		ArrayAdapter<MediaFile> lst_adapter_view  = new music_format_view(view.getContext(),0,b);
+				
         /** Setting the array adapter to the listview */
-        setListAdapter(adapter);
-        
-        transfer_file = new Datasource_mediafile();
-        List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
-        
-        Log.i(TAG,"Toi khong biet chuyen");
+        setListAdapter(lst_adapter_view);
         
 		super.onViewCreated(view, savedInstanceState);
 	}
