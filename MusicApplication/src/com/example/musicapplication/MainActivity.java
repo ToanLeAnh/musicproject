@@ -1,13 +1,16 @@
 package com.example.musicapplication;
 
-import android.os.Bundle;
-import android.content.Intent;
-import android.view.Menu;
+import java.util.zip.Inflater;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.content.Intent;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 import com.component.tab.AlbumsFragment;
 import com.component.tab.ArtistFragment;
 import com.component.tab.FoldersFragment;
@@ -59,25 +62,40 @@ public class MainActivity extends SherlockFragmentActivity{
                 .setTabListener(new FoldersFragment());
                 //.setIcon(R.drawable.songs);
 
-        actionBar.addTab(tab_Folder);
-
-        
-		//setContentView(R.layout.activity_main);
-		//actionBar = getSupportActionBar();
-		
+        actionBar.addTab(tab_Folder);	
 					
 	}
 	
-	/*
 	@Override
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
 		// TODO Auto-generated method stub
+		
+		
+		 com.actionbarsherlock.view.SubMenu subMenu1 = menu.addSubMenu("Settings");
 		 
+		 Intent intent = new Intent(this,DirectoriesActivity.class);
+	     subMenu1.add("Folders").setIntent(intent);
+	     
+	     
+	     MenuItem b = subMenu1.add("Time");
+	    
+	     MenuItem subMenu1Item = subMenu1.getItem();
+	     subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	     
+	     
+	     //Setting Menu.....
+		//com.actionbarsherlock.view.MenuInflater inflat = getSupportMenuInflater();
+		//inflat.inflate(R.menu.menu_items, menu);
+		
 		//return super.onCreateOptionsMenu(menu);
 		
 		//create menu songs
-		MenuItem menuItemSongs = menu.add("Songs");
-		menuItemSongs.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		//MenuItem menuItemSongs = menu.add("Settings");
+		
+		//menuItemSongs.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		//menuItemSongs (R.menu.menu_items);
+		
+		/*
 		menuItemSongs.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			
 			@Override
@@ -88,19 +106,31 @@ public class MainActivity extends SherlockFragmentActivity{
 				
 				return true;
 			}
-		});
+		});*/
 		
 		//add menu artist, album, playslist
 		
-		menu.add("Artists").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add("Albums").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		menu.add("Playlists").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		//menu.add("Artists").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		//menu.add("Albums").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		//menu.add("Playlists").setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		
 		
 		return true;
 		
 	}
 
-	 */
-
+	 @Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		Intent a = item.getIntent();
+		if (a != null){
+				//a.setClass(this,DirectoriesActivity.class);
+				//Intent intent_folder = new Intent(this,DirectoriesActivity.class);
+				startActivity(a);
+			
+		}
+			
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
 }
