@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.music.model.MediaFile;
 import com.music.utility.AudioFileFilter;
+import com.music.utility.Common;
 
 public class Datasource_mediafile {
 	public final static String Table = "tbl_media";
@@ -49,15 +50,15 @@ public class Datasource_mediafile {
     	
     	for (File fff : file){
     		MediaFile musicFile = new MediaFile();
-    				
+    			
     		getMeta.setDataSource(fff.getPath());
-    		musicFile.setAlbum(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM));
-    		musicFile.setArtist(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
-    		musicFile.setDuration(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+    		musicFile.setAlbum(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)));
+    		musicFile.setArtist(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)));
+    		musicFile.setDuration(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
     		musicFile.setSize(String.valueOf(fff.length()));
-    		musicFile.setTitle(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
-    		musicFile.setComposer(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_COMPOSER));
-    		musicFile.setGenre(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE));
+    		musicFile.setTitle(fff.getName());
+    		musicFile.setComposer(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_COMPOSER)));
+    		musicFile.setGenre(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE)));
     		lst_media.add(musicFile);
     	}
     		
