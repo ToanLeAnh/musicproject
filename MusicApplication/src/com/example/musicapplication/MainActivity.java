@@ -123,10 +123,7 @@ public class MainActivity extends SherlockFragmentActivity{
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Intent a = item.getIntent();
 		if (a != null){
-				//a.setClass(this,DirectoriesActivity.class);
-				//Intent intent_folder = new Intent(this,DirectoriesActivity.class);
-				startActivity(a);
-			
+			startActivity(a);
 		}
 			
 		// TODO Auto-generated method stub
