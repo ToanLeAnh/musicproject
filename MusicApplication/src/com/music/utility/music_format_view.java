@@ -44,13 +44,7 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 		TextView titleView =  (TextView)view.findViewById(title_Music_View);
 		
 		artistView.setText(mediaFile.getArtist());
-		titleView.setText(mediaFile.getTitle());
-		
-		Log.d(TAG,"Kiem Tra Chuong Trinh Androi Phone.");
-		Log.d(TAG,mediaFile.getTitle());
-		
-		
-		
+		titleView.setText(mediaFile.getTitle());	
 		return view;
 	}
 	
