@@ -21,7 +21,7 @@
 <TextView
     android:id="@+id/txt_title_music_view"
     android:text="Phoi Pha"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content" 
     android:layout_alignTop="@+id/img_thumbnail"
     android:layout_toRightOf="@+id/img_thumbnail"
