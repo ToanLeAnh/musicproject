@@ -2,6 +2,7 @@ package com.music.utility;
 
 import java.util.List;
 
+import com.music.Application.SingletonApp;
 import com.music.model.MediaFile;
 
 import android.R;
@@ -25,26 +26,29 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 	protected String TAG = "music_format_view";
 	
 	public music_format_view(Context context, int textViewResourceId,List<MediaFile> objects) {
-		super(context, com.example.musicapplication.R.layout.music_view, objects);
+		super(context, com.example.musicapplication.R.layout.music_view, SingletonApp.getList_media());
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.lst_mediaFile = objects;
+		
 	}
 	
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		Log.d(TAG,"Start Here");
 		LayoutInflater inflat =  (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 		View view = inflat.inflate(musicView, parent, false); 
 		
 		MediaFile mediaFile;
-		mediaFile = lst_mediaFile.get(position);
+		mediaFile =  lst_mediaFile.get(position);
 		TextView artistView =  (TextView)view.findViewById(artist_Music_View);
 		TextView titleView =  (TextView)view.findViewById(title_Music_View);
 		
 		artistView.setText(mediaFile.getArtist());
-		titleView.setText(mediaFile.getTitle());	
+		titleView.setText(mediaFile.getTitle());
+		Log.d(TAG,"End Here");
 		return view;
 	}
 	
