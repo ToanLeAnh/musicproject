@@ -59,7 +59,7 @@ public class Datasource_mediafile {
     public List<MediaFile> getAllMediaFromSpecifiedFolders(){
     	List<MediaFile> lst_media = new ArrayList<MediaFile>();
     	MediaMetadataRetriever getMeta = new MediaMetadataRetriever(); 
-    	String hd = "/sdcard/Download";
+    	String hd = "/mnt/sdcard/Download";
     	
     	File f = new File(hd);
     	/*
