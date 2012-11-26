@@ -124,6 +124,7 @@ public class MainActivity extends SherlockFragmentActivity{
 		Intent a = item.getIntent();
 		if (a != null){
 			startActivity(a);
+			
 		}
 			
 		// TODO Auto-generated method stub
