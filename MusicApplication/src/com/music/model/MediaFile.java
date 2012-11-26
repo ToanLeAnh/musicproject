@@ -1,6 +1,7 @@
 package com.music.model;
 
 import android.provider.MediaStore;
+import android.util.Log;
 
 public class MediaFile {
 	
@@ -14,9 +15,6 @@ public class MediaFile {
 	private String album;
 	private String composer;
 	private String genre;
-	
-	
-	
 	
 	public String getGenre() {
 		return genre;
@@ -91,5 +89,39 @@ public class MediaFile {
 		this.album = album;
 	}
 	
-						
+	/*
+	 * (non-Javadoc)
+	 * For this object i just take care the path when i compare Object 
+	 * @see java.lang.Object#hashCode()
+	 */
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		Log.d("chuoi",this.path);
+		String s = "";
+		s = this.path;
+		return s.hashCode();
+	}	
+	
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		
+		if (o == null){
+			return false;
+		}
+		
+		if(getClass() != o.getClass()){
+			return false;
+		}
+		Log.d("Sao ky vay ta"," khong hieu gi het");
+		if (this.hashCode() == o.hashCode()){
+			return true;
+		}
+		
+		return false;
+		//return super.equals(o);
+	}
+		
 }

@@ -38,6 +38,7 @@ public class MediaAlbums {
 		else{
 			this.albums.get(nameAlbums).add(mediaFile);
 		}
+		
 	}
 	
 	
