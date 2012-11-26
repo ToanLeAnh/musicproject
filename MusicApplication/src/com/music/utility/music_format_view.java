@@ -26,7 +26,7 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 	protected String TAG = "music_format_view";
 	
 	public music_format_view(Context context, int textViewResourceId,List<MediaFile> objects) {
-		super(context, com.example.musicapplication.R.layout.music_view, SingletonApp.getList_media());
+		super(context, com.example.musicapplication.R.layout.music_view,objects);
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.lst_mediaFile = objects;
