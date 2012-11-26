@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.music.Application.SingletonApp;
 import com.music.model.MediaFile;
 import com.music.objectmapping.Datasource_mediafile;
 import com.music.utility.music_format_view;
@@ -32,12 +34,10 @@ public class SongsFragment extends SherlockListFragment implements ActionBar.Tab
         /** Setting the array adapter to the listview */
         //setListAdapter(adapter);
 		
-		//Cursor cursor =  managedQuery(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, Datasource_mediafile.projection, null, null, null);
 		context = view.getContext();
-		transfer = new Datasource_mediafile(context);
-		List<MediaFile> lst_media =  transfer.getAllMediaFromExternalDevices();
 		
-		ArrayAdapter<MediaFile> temp = new music_format_view(context, 0, lst_media);
+		SingletonApp.getListMediaFileFromExternal();	
+		ArrayAdapter<MediaFile> temp = new music_format_view(context, 0, SingletonApp.getList_media());
 		setListAdapter(temp);
 		
 		super.onViewCreated(view, savedInstanceState);
