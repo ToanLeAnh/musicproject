@@ -14,6 +14,7 @@ import android.provider.MediaStore.Files;
 import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 
+import com.music.model.MediaAlbums;
 import com.music.model.MediaFile;
 import com.music.utility.AudioFileFilter;
 import com.music.utility.Common;
@@ -136,7 +137,14 @@ public class Datasource_mediafile {
     	
     	return lst_media;
     }
-        
+      
+    /*public MediaAlbums getAlbumsFromExteralDevices(){
+    	MediaAlbums albums;
+    	//context.getContentResolver().query(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, selectionArgs, sortOrder)
+    	return albums;
+    }
+    */
+    
 }
 
 
