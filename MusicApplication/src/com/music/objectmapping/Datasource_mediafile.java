@@ -74,6 +74,8 @@ public class Datasource_mediafile {
     		MediaFile musicFile = new MediaFile();
     			
     		getMeta.setDataSource(fff.getPath());
+    		
+    		musicFile.setPath(fff.getPath());
     		musicFile.setAlbum(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)));
     		musicFile.setArtist(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)));
     		musicFile.setDuration(Common.checkData(getMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)));
@@ -121,7 +123,7 @@ public class Datasource_mediafile {
     	//ToDo : Miss genre filed.
     	
     	while(cursor.isAfterLast() == false){
-    		
+    		Log.d(TAG,"Nghia");
     		MediaFile mediaFile = new MediaFile();
     		mediaFile.setPath(cursor.getString(data_position));
     		mediaFile.setDuration(cursor.getString(duration_position));
