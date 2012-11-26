@@ -5,9 +5,13 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.DownloadManager.Query;
+import android.content.Context;
+import android.database.Cursor;
 import android.media.MediaFormat;
 import android.media.MediaMetadataRetriever;
 import android.provider.MediaStore.Files;
+import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 
 import com.music.model.MediaFile;
@@ -29,8 +33,25 @@ public class Datasource_mediafile {
 	
     protected String TAG = "Datasource_mediafile";
     
+    Context context;
+    
+    private final static String[] projection = {android.provider.MediaStore.Audio.AudioColumns.DATA,
+    					   					   android.provider.MediaStore.Audio.AudioColumns.DURATION,
+    					   
+    					   
+    					   					   android.provider.MediaStore.Audio.AudioColumns.TITLE,
+    					   					   android.provider.MediaStore.Audio.AudioColumns.SIZE,
+    					   					   android.provider.MediaStore.Audio.AudioColumns.ARTIST,
+    					   
+    					   					   android.provider.MediaStore.Audio.AudioColumns.ALBUM
+    					   
+    };
+    
+    public Datasource_mediafile(Context context){
+    	this.context = context;
+    }
+    
     public Datasource_mediafile(){
-    	
     }
     
     
@@ -66,6 +87,55 @@ public class Datasource_mediafile {
     }
     
     
+    public List<MediaFile> getAllMediaFromExternalDevices(Context context){
+    	List<MediaFile> lst_media;
+    	this.context = context;
+    	lst_media = this.getAllMediaFromExternalDevices();
+    	return lst_media;
+    }
+    
+    public List<MediaFile> getAllMediaFromExternalDevices(){
+    	List<MediaFile> lst_media = new ArrayList<MediaFile>();
+    	int data_position = 0;
+    	int duration_position = 0;
+    	int type_position = 0;
+    	int picture_position = 0;
+    	int title_position = 0;
+    	int size_position = 0 ;
+    	int artist_position = 0;
+    	int genre_position = 0;
+    	int album_position =0;
+    	
+    	Cursor cursor =context.getContentResolver().query(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, Datasource_mediafile.projection, null, null, null);
+    	
+    	cursor.moveToFirst();
+    	
+    	data_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.DATA);
+    	duration_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.DURATION);
+    	//ToDo : Miss type and picture field. 
+    	title_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.TITLE);
+    	size_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.SIZE);
+    	artist_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.ARTIST);
+    	album_position = cursor.getColumnIndex(android.provider.MediaStore.Audio.AudioColumns.ALBUM);
+    	//ToDo : Miss genre filed.
+    	
+    	while(cursor.isAfterLast() == false){
+    		
+    		MediaFile mediaFile = new MediaFile();
+    		mediaFile.setPath(cursor.getString(data_position));
+    		mediaFile.setDuration(cursor.getString(duration_position));
+    		//Todo:
+    		mediaFile.setTitle(cursor.getString(title_position));
+    		mediaFile.setSize(cursor.getString(size_position));
+    		mediaFile.setAlbum(cursor.getString(album_position));
+    		mediaFile.setArtist(cursor.getString(artist_position));
+    		
+    		lst_media.add(mediaFile);
+    		cursor.moveToNext();
+    	}
+    	
+    	return lst_media;
+    }
         
 }
 
