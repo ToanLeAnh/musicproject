@@ -11,17 +11,14 @@ import android.widget.ArrayAdapter;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.music.Application.SingletonApp;
 import com.music.model.MediaFile;
 import com.music.objectmapping.Datasource_mediafile;
 import com.music.utility.music_format_view;
 
 public class FoldersFragment extends SherlockListFragment implements ActionBar.TabListener {
 	
-	String folders[] = new String[]{
-	        "Nhip Cau Tri Am",
-	        "Xuan Chien Truong",
-	        "De Lai Cho Doi", 
-	};
+	
 	
 	private Datasource_mediafile transfer_file;
 	protected String TAG = "FoldersFragment";
@@ -30,10 +27,11 @@ public class FoldersFragment extends SherlockListFragment implements ActionBar.T
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		 /** Creating array adapter to set data in listview */
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, folders);
-		transfer_file = new Datasource_mediafile();
-		List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
+		//transfer_file = new Datasource_mediafile();
+		//List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
         
-		ArrayAdapter<MediaFile> lst_adapter_view  = new music_format_view(view.getContext(),0,b);
+		SingletonApp.getListMediaFileFromFolders();
+		ArrayAdapter<MediaFile> lst_adapter_view  = new music_format_view(view.getContext(),0,SingletonApp.getList_media_folder());
 				
         /** Setting the array adapter to the listview */
         setListAdapter(lst_adapter_view);

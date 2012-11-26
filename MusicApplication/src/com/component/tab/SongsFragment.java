@@ -40,6 +40,8 @@ public class SongsFragment extends SherlockListFragment implements ActionBar.Tab
 		ArrayAdapter<MediaFile> temp = new music_format_view(context, 0, SingletonApp.getList_media());
 		setListAdapter(temp);
 		
+		SingletonApp.sync();
+		
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
