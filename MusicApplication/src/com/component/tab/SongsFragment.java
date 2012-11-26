@@ -1,5 +1,9 @@
 package com.component.tab;
 
+import java.util.List;
+
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -9,34 +13,33 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.music.model.MediaFile;
+import com.music.objectmapping.Datasource_mediafile;
+import com.music.utility.music_format_view;
 
 public class SongsFragment extends SherlockListFragment implements ActionBar.TabListener {
 	
-	String songs[] = new String[]{
-	        "Doi Thong Hai Mo",
-	        "Sao Em No Danh Quen",
-	        "Phoi Pha",
-	        "Go Cua Trai Tim",
-	        "Dem Thanh",
-	        "Tuyet Lanh",
-	        "Con Duong Mang Ten Em",
-	        "Tu KBC",
-	        "Diem Xua",
-	        "Tuoi Da Buon",
-	        "Mua Bui",
-	        "Phan Ngheo"
-	    };
+	Context context;
+	Datasource_mediafile transfer;
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		
 		 /** Creating array adapter to set data in listview */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, songs);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, songs);
  
         /** Setting the array adapter to the listview */
-        setListAdapter(adapter);
- 
+        //setListAdapter(adapter);
+		
+		//Cursor cursor =  managedQuery(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, Datasource_mediafile.projection, null, null, null);
+		context = view.getContext();
+		transfer = new Datasource_mediafile(context);
+		List<MediaFile> lst_media =  transfer.getAllMediaFromExternalDevices();
+		
+		ArrayAdapter<MediaFile> temp = new music_format_view(context, 0, lst_media);
+		setListAdapter(temp);
+		
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
