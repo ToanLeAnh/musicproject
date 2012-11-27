@@ -14,7 +14,7 @@ import android.provider.MediaStore.Files;
 import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 
-import com.music.model.MediaAlbums;
+import com.music.Application.SingletonApp;
 import com.music.model.MediaFile;
 import com.music.utility.AudioFileFilter;
 import com.music.utility.Common;
@@ -134,9 +134,10 @@ public class Datasource_mediafile {
     		mediaFile.setArtist(cursor.getString(artist_position));
     		
     		lst_media.add(mediaFile);
+    		SingletonApp.add_MediaToAlbum(mediaFile);
     		cursor.moveToNext();
     	}
-    	
+    	cursor.close();
     	return lst_media;
     }
       
