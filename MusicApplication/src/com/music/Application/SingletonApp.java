@@ -1,23 +1,24 @@
 package com.music.Application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.music.model.MediaAlbums;
 import com.music.model.MediaFile;
 import com.music.objectmapping.Datasource_mediafile;
+import com.music.objectmapping.DataSource_groupmedia;
 
 public class SingletonApp {
 	private static List<MediaFile> list_combine = null;
 	private static List<MediaFile> list_media = null;
 	private static List<MediaFile> list_media_folder = null;
-	private static MediaAlbums dic_albums=null;
+	private static DataSource_groupmedia dic_albums=null;
 	private static Context context = null;
-	private static Lock lock = null;
+	private static Object lock1 = new Object();
 	
 	private static String TAG = "SingletonApp";
 	
@@ -26,7 +27,7 @@ public class SingletonApp {
 		list_combine = new ArrayList<MediaFile>();
 		list_media = new ArrayList<MediaFile>();
 		list_media_folder = new ArrayList<MediaFile>();
-		dic_albums = new MediaAlbums();
+		dic_albums = new DataSource_groupmedia();
 		context = contextObj;
 	}
 	
@@ -54,8 +55,9 @@ public class SingletonApp {
 
 	public static void sync(){
 		new Thread(){
-			public void run() {
+			public void run() {			
 				getListMediaFileFromFolders();
+				
 				for (MediaFile a : list_media_folder){
 					/*if (!list_combine.contains(a.getc)){
 						list_combine.add(a);
@@ -65,8 +67,6 @@ public class SingletonApp {
 					MediaFile c = new MediaFile();;
 					c= a;
 					for (MediaFile b : list_media){
-						Log.d("Nghia",a.getPath());
-						Log.d("Nghia",b.getPath());
 						if (a.equals(b)){
 							push = 0 ;
 							break;
@@ -74,10 +74,18 @@ public class SingletonApp {
 					}
 					
 					if ((c != null) && (push == -1)) {
-						Log.d("kkk",String.valueOf(push));
 						list_combine.add(c);
 					}
 				}
+			};
+		}.start();
+	}
+	
+	public static void add_MediaToAlbum(MediaFile mediaFile){
+		final MediaFile mediaFileTemp = mediaFile;
+		new Thread(){
+			public void run() {
+				dic_albums.add_MediaFileToAlbums(mediaFileTemp);
 			};
 		}.start();
 	}
@@ -90,5 +98,8 @@ public class SingletonApp {
 		return list_media_folder;
 	}
 	
+	public static List<HashMap<String,List<MediaFile>>> getGroupAlbums(){
+		return dic_albums.getGroup();
+	}
 	
 }
