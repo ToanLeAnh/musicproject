@@ -1,5 +1,8 @@
 package com.component.tab;
 
+import java.util.HashMap;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.music.Application.SingletonApp;
+import com.music.model.MediaFile;
 
 public class AlbumsFragment extends SherlockListFragment implements ActionBar.TabListener {
 	String songs[] = new String[]{
@@ -23,9 +28,12 @@ public class AlbumsFragment extends SherlockListFragment implements ActionBar.Ta
 		// TODO Auto-generated method stub
 		
 		 /** Creating array adapter to set data in listview */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, songs);
+        //ArrayAdapter<HashMap<String,List<MediaFile>>> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, SingletonApp.getGroupAlbums());
  
         /** Setting the array adapter to the listview */
+		ArrayAdapter<HashMap<String,List<MediaFile>>> adapter = new ArrayAdapter<HashMap<String,List<MediaFile>>>(getActivity().getBaseContext(), 0, SingletonApp.getGroupAlbums());
+		 
+        
         setListAdapter(adapter);
  
 		super.onViewCreated(view, savedInstanceState);

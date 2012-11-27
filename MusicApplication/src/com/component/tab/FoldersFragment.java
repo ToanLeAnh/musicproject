@@ -30,7 +30,7 @@ public class FoldersFragment extends SherlockListFragment implements ActionBar.T
 		//transfer_file = new Datasource_mediafile();
 		//List<MediaFile> b =  transfer_file.getAllMediaFromSpecifiedFolders();
         
-		SingletonApp.getListMediaFileFromFolders();
+		//SingletonApp.getListMediaFileFromFolders();
 		ArrayAdapter<MediaFile> lst_adapter_view  = new music_format_view(view.getContext(),0,SingletonApp.getList_media_folder());
 				
         /** Setting the array adapter to the listview */
