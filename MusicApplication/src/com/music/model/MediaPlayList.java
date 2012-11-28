@@ -1,8 +1,6 @@
 package com.music.model;
 
 public class MediaPlayList {
-	public final static String Col_PLAYLIST = "PLAYLIST";
-	public final static String Col_IS_SYSTEM = "IS_SYSTEM";
 	
 	private String playlist = "";
 	private String is_system = "";
