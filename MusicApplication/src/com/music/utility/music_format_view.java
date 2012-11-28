@@ -37,7 +37,7 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		Log.d(TAG,"Start Here");
+		
 		LayoutInflater inflat =  (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 		View view = inflat.inflate(musicView, parent, false); 
 		
@@ -48,7 +48,7 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 		
 		artistView.setText(mediaFile.getArtist());
 		titleView.setText(mediaFile.getTitle());
-		Log.d(TAG,"End Here");
+		
 		return view;
 	}
 	
