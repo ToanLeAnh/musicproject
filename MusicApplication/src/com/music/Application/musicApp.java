@@ -18,5 +18,11 @@ public class musicApp extends Application {
 		
 	}
 	
-	
+	@Override
+	public void onTerminate() {
+		// TODO Auto-generated method stub
+		SingletonApp.destroy();
+		Log.d(TAG,"App is on DEstroy");
+		super.onTerminate();
+	}
 }

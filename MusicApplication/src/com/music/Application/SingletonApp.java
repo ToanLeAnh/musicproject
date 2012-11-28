@@ -31,8 +31,21 @@ public class SingletonApp {
 		context = contextObj;
 	}
 	
+	public static void destroy(){
+		//list_combine = null;
+		//list_media = null;
+		//list_media_folder = null;
+		//dic_albums = null;
+		list_combine = new ArrayList<MediaFile>();
+		list_media = new ArrayList<MediaFile>();
+		list_media_folder = new ArrayList<MediaFile>();
+		dic_albums = new DataSource_groupmedia();
+		context = null;
+	}
+	
 	public static void getListMediaFileFromExternal(){
 		//Log.d(TAG,String.valueOf(list_media.size()));
+		
 		if (list_media.size() == 0){
 			Datasource_mediafile transfer_mediafile = new Datasource_mediafile(context);
 			list_media = transfer_mediafile.getAllMediaFromExternalDevices();
@@ -75,6 +88,7 @@ public class SingletonApp {
 					
 					if ((c != null) && (push == -1)) {
 						list_combine.add(c);
+						add_MediaToAlbum(c);
 					}
 				}
 			};
@@ -82,13 +96,17 @@ public class SingletonApp {
 	}
 	
 	public static void add_MediaToAlbum(MediaFile mediaFile){
-		final MediaFile mediaFileTemp = mediaFile;
+		final MediaFile mediaFileTemp =  mediaFile;
+		Log.d(TAG,"Add Group album here");
 		new Thread(){
 			public void run() {
+				Log.d(TAG, "ke chuyen dem khuya");
 				dic_albums.add_MediaFileToAlbums(mediaFileTemp);
+				dic_albums.add_MediaFileToArtist(mediaFileTemp);
 			};
 		}.start();
 	}
+	
 	
 	public static List<MediaFile> getList_media() {
 		return list_combine;
@@ -98,8 +116,12 @@ public class SingletonApp {
 		return list_media_folder;
 	}
 	
-	public static List<HashMap<String,List<MediaFile>>> getGroupAlbums(){
+	public static List<HashMap<String,ArrayList<MediaFile>>> getGroupAlbums(){
 		return dic_albums.getGroup();
+	}
+	
+	public static List<HashMap<String,ArrayList<MediaFile>>> getGroupAtists(){
+		return dic_albums.getArtist();
 	}
 	
 }
