@@ -16,10 +16,13 @@ import com.component.tab.ArtistFragment;
 import com.component.tab.FoldersFragment;
 import com.component.tab.PlayListFragment;
 import com.component.tab.SongsFragment;
+import com.music.Application.SingletonApp;
 
 public class MainActivity extends SherlockFragmentActivity{
-
+	
+	protected String TAG = "MainActivity";
 	com.actionbarsherlock.app.ActionBar actionBar;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -131,4 +134,20 @@ public class MainActivity extends SherlockFragmentActivity{
 		return true;
 	}
 	
+	 @Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		Log.d(TAG,"On Pause");
+		super.onPause();
+	}
+	 
+	 @Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		Log.d(TAG,"On Destroy");
+		SingletonApp.destroy();
+		Log.d(TAG,"Destroy alreddy");
+		super.onDestroy();
+	}
+	 
 }
