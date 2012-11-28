@@ -1,5 +1,9 @@
 package com.component.tab;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -9,26 +13,29 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.example.musicapplication.R;
+import com.music.Application.SingletonApp;
+import com.music.model.MediaFile;
+import com.music.utility.group_format_view;
 
 public class ArtistFragment extends SherlockListFragment implements ActionBar.TabListener{
 	
-	String artist[] = new String[]{
-	        "Le Huu Nghia",
-	        "Che Linh",
-	        "Thanh Tuyen",
-	        "Truong Vu"
-	      };
+	protected String TAG = "ArtistFragment";
+	private Context  context;
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		
 		 /** Creating array adapter to set data in listview */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, artist);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, artist);
  
         /** Setting the array adapter to the listview */
-        setListAdapter(adapter);
- 
+        //setListAdapter(adapter);
+		context = view.getContext();
+		ArrayAdapter<HashMap<String,ArrayList<MediaFile>>> adapter = new group_format_view(context,R.layout.group_view, SingletonApp.getGroupAtists());
+		setListAdapter(adapter);
+		
 		super.onViewCreated(view, savedInstanceState);
 	}
 	

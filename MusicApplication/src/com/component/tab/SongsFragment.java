@@ -35,8 +35,7 @@ public class SongsFragment extends SherlockListFragment implements ActionBar.Tab
         //setListAdapter(adapter);
 		
 		context = view.getContext();
-		
-		SingletonApp.getListMediaFileFromExternal();	
+		SingletonApp.getListMediaFileFromExternal();
 		ArrayAdapter<MediaFile> temp = new music_format_view(context, 0, SingletonApp.getList_media());
 		setListAdapter(temp);
 		
@@ -49,8 +48,6 @@ public class SongsFragment extends SherlockListFragment implements ActionBar.Tab
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		
-		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
 
 	@Override
