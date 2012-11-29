@@ -6,5 +6,6 @@
     <string name="menu_settings">Settings</string>
     <string name="songs">Songs</string>
     <string name="title_activity_list_directories">ListDirectories</string>
+    <string name="title_activity_stream_media">StreamMediaActivity</string>
 
 </resources>
