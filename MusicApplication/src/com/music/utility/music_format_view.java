@@ -2,14 +2,19 @@ package com.music.utility;
 
 import java.util.List;
 
+import com.example.musicapplication.StreamMediaActivity;
 import com.music.Application.SingletonApp;
 import com.music.model.MediaFile;
+import com.music.model.MediaPlayParcel;
 
 import android.R;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -33,6 +38,30 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 		
 	}
 	
+	private class onRowClick implements OnClickListener{
+		int position = 0 ;
+		
+		public onRowClick(int position){
+			this.position = position;
+		}
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+			MediaPlayParcel mediaPlay = new MediaPlayParcel();
+			MediaFile mediaFile = lst_mediaFile.get(position);
+			mediaPlay.setPathMedia(mediaFile.getPath());
+			mediaPlay.setPosition(position);
+			
+			Intent intent_listen = new Intent(v.getContext(),StreamMediaActivity.class);
+			Bundle o = new Bundle();
+			o.putParcelable("infObj", mediaPlay);
+			intent_listen.putExtra("parcel",o); 
+			v.getContext().startActivity(intent_listen);
+		}
+		
+	}
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -48,6 +77,8 @@ public class music_format_view extends ArrayAdapter<MediaFile> {
 		
 		artistView.setText(mediaFile.getArtist());
 		titleView.setText(mediaFile.getTitle());
+		
+		view.setOnClickListener(new onRowClick(position));
 		
 		return view;
 	}
