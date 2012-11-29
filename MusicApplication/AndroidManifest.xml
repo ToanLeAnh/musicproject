@@ -9,12 +9,12 @@
         android:targetSdkVersion="14" />
 
     <application
+        android:name="com.music.Application.musicApp"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Sherlock"
-        android:name="com.music.Application.musicApp" >
-        
+        android:theme="@style/Theme.Sherlock" >
         <activity
             android:name="com.example.musicapplication.MainActivity"
             android:label="@string/app_name" >
@@ -24,18 +24,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.example.musicapplication.SongsActivity"
             android:label="@string/songs"
             android:theme="@style/Theme.Sherlock" >
         </activity>
-        
         <activity
             android:name="com.example.musicapplication.DirectoriesActivity"
             android:label="@string/title_activity_list_directories" >
         </activity>
-        
+        <activity
+            android:name="com.example.musicapplication.StreamMediaActivity"
+            android:label="@string/title_activity_stream_media" >
+        </activity>
     </application>
 
 </manifest>
